@@ -1,0 +1,72 @@
+{
+  "name": "rivt",
+  "version": "0.1.0",
+  "description": "Your architecture, enforced.",
+  "type": "module",
+  "bin": {
+    "rivt": "./dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src tests",
+    "format": "prettier --write src tests",
+    "format:check": "prettier --check src tests",
+    "typecheck": "tsc --noEmit",
+    "fix": "eslint --fix src tests && pnpm run format",
+    "check": "pnpm run lint && pnpm run format:check && pnpm run typecheck && pnpm run test",
+    "prepare": "husky",
+    "prepublishOnly": "pnpm run build"
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "keywords": [
+    "linter",
+    "architecture",
+    "react",
+    "typescript",
+    "static-analysis"
+  ],
+  "author": "Ahmed Abbas",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@typescript-eslint/typescript-estree": "^8.57.2",
+    "@typescript-eslint/visitor-keys": "^8.57.2",
+    "jiti": "^2.6.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^25.5.0",
+    "eslint": "^10.1.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.1",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.57.2",
+    "vitest": "^4.1.2"
+  }
+}
